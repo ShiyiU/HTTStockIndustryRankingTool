@@ -3,6 +3,7 @@ import os
 from typing import Any
 import json
 from google.genai import types
+import csv
 
 def production_growth_rate(file_path: str) -> dict[str, Any]:
     client = genai.Client(api_key=os.getenv("HTT_RATIO_GEMINI_API_KEY"))
@@ -50,9 +51,28 @@ def production_growth_rate(file_path: str) -> dict[str, Any]:
     return response_json
 
 def save_production_growth_rate_data(data: dict[str, Any], filename: str) -> None:
-    pass    
+    field_names = ["company_name", "year", "quarter", "production_growth_rate"]
+    
+    file_exists = os.path.exists(filename)
+
+    with open(filename, mode = "a", newline = "", encoding = "utf-8") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames = field_names)
+        
+        if not file_exists:
+            writer.writeheader()
+
+        writer.writerow(data)
 
 
 if __name__ == "__main__":
-    test_dict = production_growth_rate("reports\quarterly\q3-2025-quarterly-press-release.pdf")
-    print(test_dict)
+    #test_dict = production_growth_rate("reports\quarterly\q3-2025-quarterly-press-release.pdf")
+    #print(test_dict)
+    
+    test_dict = {
+        "company_name": "BP",
+        "year": 2025,
+        "quarter": 4,
+        "production_growth_rate": 3.2
+    }
+    
+    save_production_growth_rate_data(test_dict, "production_growth_rate.csv")
