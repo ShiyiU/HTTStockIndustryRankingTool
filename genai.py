@@ -69,10 +69,10 @@ if __name__ == "__main__":
     #print(test_dict)
     
     test_dict = {
-        "company_name": "BP",
-        "year": 2025,
-        "quarter": 4,
-        "production_growth_rate": 3.2
+        "company_name": "Shell",
+        "year": 2024,
+        "quarter": 1,
+        "production_growth_rate": 1.2
     }
     
     save_production_growth_rate_data(test_dict, "production_growth_rate.csv")
