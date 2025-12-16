@@ -27,7 +27,7 @@ def quarterly_price_change(ticker: str, year: int, quarter: int) -> float:
     )
 
     if df.empty:
-        raise ValueError("No data returned.")
+        raise ValueError(f"No data returned for {ticker} in Q{quarter} of {year}.")
 
     # Extract scalar values safely
     start_price = df["Close"].iloc[0].item()
@@ -39,27 +39,36 @@ def quarterly_price_change(ticker: str, year: int, quarter: int) -> float:
 
 def get_price_change_multiple_quarters(
     ticker: str,
-    year: int,
+    years: list[int], # Updated to accept a list of years
     quarters: list[int]
 ):
     """
-    Appends quarterly price changes for a ticker to the master CSV file.
-    Creates the file if it does not exist.
+    Calculates and appends quarterly price changes for a ticker and multiple years/quarters
+    to the master CSV file. Creates the file if it does not exist.
     """
     CSV_PATH = "quarterly_price_change.csv"
     new_rows = []
 
-    for quarter in quarters:
-        price_change = quarterly_price_change(ticker, year, quarter)
+    # New outer loop for years
+    for year in years:
+        for quarter in quarters:
+            try:
+                price_change = quarterly_price_change(ticker, year, quarter)
+            except ValueError as e:
+                print(f"Skipping {ticker} Q{quarter} {year}: {e}")
+                continue # Skip to the next quarter if data is not found
 
-        new_rows.append({
-            "Ticker": ticker,
-            "Year": year,
-            "Quarter": f"Q{quarter}",
-            "Price Change (%)": price_change
-        })
+            new_rows.append({
+                "Ticker": ticker,
+                "Year": year,
+                "Quarter": f"Q{quarter}",
+                "Price Change (%)": price_change
+            })
 
     new_df = pd.DataFrame(new_rows)
+    
+    if new_df.empty:
+        return pd.DataFrame() # Return empty if no data was fetched
 
     # Load existing or create new
     if os.path.exists(CSV_PATH) and os.path.getsize(CSV_PATH) > 0:
@@ -79,8 +88,9 @@ def get_price_change_multiple_quarters(
     return combined_df
 
 
+# Example usage with multiple years: 2023, 2024, and 2025
 get_price_change_multiple_quarters(
     ticker="AAPL",
-    year=2025,
+    years=[2023, 2024, 2025],
     quarters=[1, 2, 3, 4]
 )
