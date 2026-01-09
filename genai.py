@@ -57,7 +57,7 @@ def save_production_growth_rate_data(data: dict[str, Any], filename: str) -> Non
 
 
 if __name__ == "__main__":
-    test_dict = production_growth_rate("reports/quarterly/q4-2024-quarterly-press-release.pdf")
+    test_dict = production_growth_rate("reports/quarterly/q3-2025-quarterly-press-release.pdf")
     print(test_dict)
     
     """
