@@ -31,14 +31,6 @@ def production_growth_rate(file_path: str) -> dict[str, Any]:
             An example is given: {'company_name': 'Shell', 'year': 2024, 'quarter': 1, 'production_growth_rate': 1.2}", uploaded_file
             ],
 
-        #contents = ["I want to use the information provided here to calculate the production growth rate which is a ratio \
-        #between the current period production minus the prior period production all divided by the prior period production. \
-        #This is of course in the context of oil and gas production. \
-        #Can you find this data and calculate the ratio for me? \
-        #Provide the information in a JSON string only. An example is given: \
-        #    {'company_name': 'Shell', 'year': 2024, 'quarter': 1, 'production_growth_rate': 1.2}", uploaded_file
-        #],
-
         config = types.GenerateContentConfig(
             response_mime_type = "application/json",
             response_schema = json_schema
@@ -65,14 +57,16 @@ def save_production_growth_rate_data(data: dict[str, Any], filename: str) -> Non
 
 
 if __name__ == "__main__":
-    #test_dict = production_growth_rate("reports\quarterly\q3-2025-quarterly-press-release.pdf")
-    #print(test_dict)
+    test_dict = production_growth_rate("reports/quarterly/q4-2024-quarterly-press-release.pdf")
+    print(test_dict)
     
+    """
     test_dict = {
-        "company_name": "Shell",
+        "company_name": "GAZ",
         "year": 2024,
-        "quarter": 1,
-        "production_growth_rate": 1.2
+        "quarter": 3,
+        "production_growth_rate": 1.9
     }
+    """
     
     save_production_growth_rate_data(test_dict, "production_growth_rate.csv")

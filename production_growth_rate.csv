@@ -1,3 +1,5 @@
 company_name,year,quarter,production_growth_rate
-BP,2025,4,3.2
-Shell,2024,1,1.2
+SHEL,2024,1,0.00106951871657754
+SHEL,2024,2,-0.0475
+SHEL,2024,3,0.0157
+SHEL,2024,4,0.0265

@@ -27,7 +27,7 @@ def quarterly_price_change(ticker: str, year: int, quarter: int) -> float:
     )
 
     if df.empty:
-        raise ValueError(f"No data returned for {ticker} in Q{quarter} of {year}.")
+        raise ValueError(f"No data returned for {ticker} in {quarter} of {year}.")
 
     # Extract scalar values safely
     start_price = df["Close"].iloc[0].item()
@@ -60,9 +60,9 @@ def get_price_change_multiple_quarters(
 
             new_rows.append({
                 "Ticker": ticker,
-                "Year": year,
-                "Quarter": f"Q{quarter}",
-                "Price Change (%)": price_change
+                "year": year,
+                "quarter": quarter,
+                "price_change_%": price_change
             })
 
     new_df = pd.DataFrame(new_rows)
@@ -79,7 +79,7 @@ def get_price_change_multiple_quarters(
 
     # Prevent duplicate rows
     combined_df = combined_df.drop_duplicates(
-        subset=["Ticker", "Year", "Quarter"],
+        subset=["Ticker", "year", "quarter"],
         keep="last"
     )
 
@@ -90,7 +90,7 @@ def get_price_change_multiple_quarters(
 
 # Example usage with multiple years: 2023, 2024, and 2025
 get_price_change_multiple_quarters(
-    ticker="AAPL",
+    ticker="SHEL",
     years=[2023, 2024, 2025],
     quarters=[1, 2, 3, 4]
 )
