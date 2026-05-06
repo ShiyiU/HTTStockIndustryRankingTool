@@ -1,0 +1,10 @@
+Ticker,Best Order,Sharpe,d_val,Status
+CVX,"(0, 0, 3)",0.3065,0,OK
+NFG,"(2, 0, 4)",1.4056,0,OK
+DVN,"(3, 0, 0)",0.8132,0,OK
+EXE,"(1, 0, 3)",0.3453,0,OK
+MTDR,"(0, 0, 4)",0.2535,0,OK
+CNX,"(0, 0, 3)",0.5627,0,OK
+NOG,SKIPPED,,0,No valid ARIMA order — all scored <= 0 or failed
+RRC,"(3, 1, 3)",0.5673,1,OK
+TALO,"(2, 1, 1)",0.3836,1,OK
