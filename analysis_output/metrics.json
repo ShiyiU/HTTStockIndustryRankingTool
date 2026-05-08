@@ -1,0 +1,38 @@
+{
+  "feature_columns": [
+    "BOED",
+    "OCF/BOED",
+    "ROA",
+    "CostExpenses/BOED",
+    "Stock/Oil ZScore",
+    "PGR"
+  ],
+  "linear_regression": {
+    "r2": -0.4448815000519428,
+    "rmse": 21.64900394782507,
+    "mae": 14.426279961908762,
+    "mape": 1.73970591439261
+  },
+  "random_forest": {
+    "r2": -0.0598253742488144,
+    "rmse": 18.541247917557655,
+    "mae": 13.692264294982863,
+    "mape": 2.541846758367155
+  },
+  "linear_coefficients": {
+    "BOED": -3.471998786254381e-08,
+    "OCF/BOED": 3.707908410866223e-05,
+    "ROA": -0.020489422956831198,
+    "CostExpenses/BOED": -3.061410980036697e-05,
+    "Stock/Oil ZScore": -3.7049954022052116,
+    "PGR": -0.0017144225627701544
+  },
+  "rf_feature_importance": {
+    "BOED": 0.08609385498016314,
+    "OCF/BOED": 0.09890299869814201,
+    "ROA": 0.21575995435014642,
+    "CostExpenses/BOED": 0.1296507640562656,
+    "Stock/Oil ZScore": 0.3640804543622186,
+    "PGR": 0.10551197355306427
+  }
+}
